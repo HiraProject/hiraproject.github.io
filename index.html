@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fabric Installer - Minecraft</title>
+    <title>HiraProject - Game Enhacements.</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2ecc71;
-            --secondary: #27ae60;
+            --primary: #3B82F6;
+            --secondary: #60A5FA;
             --background: #0f0f0f;
             --surface: #1a1a1a;
             --text: #f5f5f5;
@@ -30,7 +30,6 @@
             overflow-x: hidden;
         }
 
-        /* Nouveau design de la navbar */
         .navbar {
             background: var(--glass);
             padding: 1.2rem 2rem;
@@ -91,7 +90,6 @@
             width: 100%;
         }
 
-        /* Section héroïque améliorée */
         .hero {
             padding: 12rem 2rem 6rem;
             text-align: center;
@@ -120,14 +118,19 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        /* Cartes améliorées */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
         .program-card {
             background: var(--glass);
             border-radius: 20px;
             padding: 2.5rem;
             margin: 2rem 0;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(46, 204, 113, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.15);
             position: relative;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -156,7 +159,6 @@
             opacity: 1;
         }
 
-        /* Boutons améliorés */
         .download-btn {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: #fff;
@@ -189,7 +191,6 @@
             left: 100%;
         }
 
-        /* Nouvelles sections */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -205,13 +206,16 @@
             transition: transform 0.3s ease;
         }
 
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
         .feature-card i {
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 1rem;
         }
 
-        /* Animation au défilement */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -223,7 +227,6 @@
             transform: translateY(0);
         }
 
-        /* Nouveau footer */
         footer {
             background: var(--surface);
             padding: 4rem 2rem;
@@ -244,7 +247,21 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Animation clé */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-btn {
+            color: var(--text);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-btn:hover {
+            color: var(--primary);
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
@@ -253,6 +270,10 @@
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
             }
             
             .features {
@@ -265,8 +286,8 @@
     <nav class="navbar">
         <div class="navbar-content">
             <a href="#" class="logo">
-                <i class="fas fa-cubes"></i>
-                FabricTools
+                <i class="fas fa-cube"></i>
+                HiraProject
             </a>
             <div class="nav-links">
                 <a href="#home">Accueil</a>
@@ -278,20 +299,36 @@
     </nav>
 
     <section class="hero">
-        <h1 class="reveal">Installer Fabric</h1>
-        <p class="reveal">L'expérience de modding ultime pour Minecraft</p>
+        <h1 class="reveal">HiraProject</h1>
+        <p class="reveal">La nouvelle génération de triche sur les jeux vidéos.</p>
     </section>
 
     <div class="container">
         <div class="program-card reveal">
-            <h2><i class="fas fa-download"></i> Fabric Installer</h2>
+            <h2><i class="fas fa-download"></i> Gorilla Loader</h2>
             <div class="version-info">
-                <span class="version-tag">Version: 1.0.1</span>
+                <span class="version-tag">Version: Last</span>
+                <span class="mc-version">Warzone: Last</span>
+            </div>
+            <p>Gorilla Loader offre des fonctionnalités avancées telles que l'ESP, l'aimbot et le déverrouillage de tout sur Black Ops 6 et Warzone, garantissant une expérience de jeu inégalée.</p>
+            <div class="download-stats">
+                <i class="fas fa-chart-line"></i> 1M+ téléchargements
+            </div>
+            <a href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/gorilla-loader-1.0.0.exe" class="download-btn" target="_blank">
+                <i class="fas fa-download"></i>
+                Télécharger
+            </a>
+        </div>
+        
+        <div class="program-card reveal">
+            <h2><i class="fas fa-download"></i> Fabric</h2>
+            <div class="version-info">
+                <span class="version-tag">Version: 0.16.10</span>
                 <span class="mc-version">Minecraft 1.24.1</span>
             </div>
-            <p>Une plateforme de modding légère et performante avec support technique avancé et système de dépendances automatisé.</p>
+            <p>Plateforme complète de gestion de mods avec système intelligent de résolution de dépendances et mise à jour automatique.</p>
             <div class="download-stats">
-                <i class="fas fa-chart-line"></i> 1M+ téléchargements ce mois-ci
+                <i class="fas fa-chart-line"></i> 750K+ téléchargements
             </div>
             <a href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/fabric-installer-1.0.1.exe" class="download-btn" target="_blank">
                 <i class="fas fa-download"></i>
@@ -303,17 +340,17 @@
             <div class="feature-card reveal">
                 <i class="fas fa-bolt"></i>
                 <h3>Performance</h3>
-                <p>Optimisation maximale pour une expérience de jeu fluide</p>
+                <p>Optimisation multicœur et gestion mémoire avancée</p>
             </div>
             <div class="feature-card reveal">
                 <i class="fas fa-shield-alt"></i>
-                <h3>Sécurisé</h3>
-                <p>Vérification automatique des mods et signatures</p>
+                <h3>Sécurité</h3>
+                <p>Vérification cryptographique des packages</p>
             </div>
             <div class="feature-card reveal">
                 <i class="fas fa-puzzle-piece"></i>
-                <h3>Modulaire</h3>
-                <p>Gestion automatique des dépendances entre mods</p>
+                <h3>Modularité</h3>
+                <p>Système de plugins extensible</p>
             </div>
         </section>
     </div>
@@ -321,18 +358,14 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Navigation</h3>
-                <ul>
-                    <li><a href="#home">Accueil</a></li>
-                    <li><a href="#features">Fonctionnalités</a></li>
-                    <li><a href="#download">Téléchargement</a></li>
-                </ul>
+                <h3>HiraProject</h3>
+                <p>© 2024 HiraProject<br>Tous droits réservés</p>
             </div>
             <div class="footer-section">
                 <h3>Ressources</h3>
                 <ul>
                     <li><a href="#docs">Documentation</a></li>
-                    <li><a href="#github">GitHub</a></li>
+                    <li><a href="#changelog">Notes de version</a></li>
                     <li><a href="#status">Statut des services</a></li>
                 </ul>
             </div>
@@ -340,15 +373,14 @@
                 <h3>Communauté</h3>
                 <div class="social-links">
                     <a href="#discord" class="social-btn"><i class="fab fa-discord"></i></a>
-                    <a href="#twitter" class="social-btn"><i class="fab fa-twitter"></i></a>
-                    <a href="#reddit" class="social-btn"><i class="fab fa-reddit"></i></a>
+                    <a href="#github" class="social-btn"><i class="fab fa-github"></i></a>
+                    <a href="#youtube" class="social-btn"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Animation au défilement
         window.addEventListener('scroll', reveal);
         function reveal() {
             const reveals = document.querySelectorAll('.reveal');
