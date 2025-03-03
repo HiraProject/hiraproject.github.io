@@ -14,22 +14,20 @@
             --surface: #1a1a1a;
             --text: #f5f5f5;
             --glass: rgba(26, 26, 26, 0.25);
+            --accent: #FF5722;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-
         body {
             background-color: var(--background);
             color: var(--text);
             line-height: 1.7;
             overflow-x: hidden;
         }
-
         .navbar {
             background: var(--glass);
             padding: 1.2rem 2rem;
@@ -41,7 +39,6 @@
             border-bottom: 1px solid var(--primary);
             box-shadow: 0 4px 30px rgba(0,0,0,0.1);
         }
-
         .navbar-content {
             max-width: 1400px;
             margin: 0 auto;
@@ -49,7 +46,6 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
@@ -60,12 +56,10 @@
             align-items: center;
             gap: 0.5rem;
         }
-
         .nav-links {
             display: flex;
             gap: 2.5rem;
         }
-
         .nav-links a {
             color: var(--text);
             text-decoration: none;
@@ -74,7 +68,6 @@
             position: relative;
             padding: 0.5rem 0;
         }
-
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -85,18 +78,15 @@
             background: var(--primary);
             transition: width 0.3s ease;
         }
-
         .nav-links a:hover::after {
             width: 100%;
         }
-
         .hero {
             padding: 12rem 2rem 6rem;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
-
         .hero::before {
             content: '';
             position: absolute;
@@ -108,7 +98,6 @@
             opacity: 0.1;
             z-index: -1;
         }
-
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 1.5rem;
@@ -117,19 +106,32 @@
             -webkit-text-fill-color: transparent;
             animation: float 3s ease-in-out infinite;
         }
-
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin-bottom: 2rem;
             color: var(--secondary);
         }
-
+        .hero .cta-btn {
+            background: var(--accent);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .hero .cta-btn:hover {
+            background: var(--primary);
+        }
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
         }
-
         .program-card {
             background: var(--glass);
             border-radius: 20px;
@@ -140,7 +142,6 @@
             position: relative;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
         .program-card::before {
             content: '';
             position: absolute;
@@ -155,23 +156,19 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-
         .program-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
-
         .program-card:hover::before {
             opacity: 1;
         }
-
         .program-card .version-info {
             margin-top: 1rem;
             display: flex;
             justify-content: space-between;
             color: var(--text);
         }
-
         .download-btn {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: #fff;
@@ -188,7 +185,6 @@
             overflow: hidden;
             border: none;
         }
-
         .download-btn::before {
             content: '';
             position: absolute;
@@ -199,18 +195,15 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: 0.5s;
         }
-
         .download-btn:hover::before {
             left: 100%;
         }
-
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             padding: 4rem 2rem;
         }
-
         .feature-card {
             background: var(--surface);
             padding: 2rem;
@@ -218,28 +211,23 @@
             text-align: center;
             transition: transform 0.3s ease;
         }
-
         .feature-card:hover {
             transform: translateY(-5px);
         }
-
         .feature-card i {
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 1rem;
         }
-
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--secondary);
         }
-
         .feature-card p {
             font-size: 1rem;
             color: var(--text);
         }
-
         .testimonial-section {
             padding: 4rem 2rem;
             background: var(--glass);
@@ -247,14 +235,12 @@
             margin: 4rem 0;
             backdrop-filter: blur(10px);
         }
-
         .testimonial-section h2 {
             text-align: center;
             margin-bottom: 2rem;
             font-size: 2rem;
             color: var(--primary);
         }
-
         .testimonial {
             background: var(--surface);
             padding: 2rem;
@@ -263,16 +249,13 @@
             text-align: center;
             color: var(--text);
         }
-
         .testimonial p {
             margin-bottom: 1rem;
         }
-
         .testimonial .author {
             font-weight: 600;
             color: var(--primary);
         }
-
         .cta-section {
             padding: 4rem 2rem;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
@@ -281,17 +264,14 @@
             text-align: center;
             color: #fff;
         }
-
         .cta-section h2 {
             margin-bottom: 1rem;
             font-size: 2rem;
         }
-
         .cta-section p {
             margin-bottom: 2rem;
             font-size: 1.2rem;
         }
-
         .cta-btn {
             background: #fff;
             color: var(--primary);
@@ -307,7 +287,6 @@
             overflow: hidden;
             border: none;
         }
-
         .cta-btn::before {
             content: '';
             position: absolute;
@@ -318,29 +297,24 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: 0.5s;
         }
-
         .cta-btn:hover::before {
             left: 100%;
         }
-
         .reveal {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease;
         }
-
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
-
-        footer {
+        .footer {
             background: var(--surface);
             padding: 4rem 2rem;
             margin-top: 6rem;
             position: relative;
         }
-
         .footer-content {
             max-width: 1400px;
             margin: 0 auto;
@@ -348,64 +322,51 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 3rem;
         }
-
         .footer-section h3 {
             color: var(--primary);
             margin-bottom: 1.5rem;
         }
-
         .footer-section p {
             color: var(--text);
         }
-
         .footer-section ul {
             list-style: none;
             padding: 0;
         }
-
         .footer-section ul li {
             margin-bottom: 1rem;
         }
-
         .footer-section ul li a {
             color: var(--text);
             text-decoration: none;
             transition: color 0.3s ease;
         }
-
         .footer-section ul li a:hover {
             color: var(--primary);
         }
-
         .social-links {
             display: flex;
             gap: 1rem;
         }
-
         .social-btn {
             color: var(--text);
             font-size: 1.5rem;
             transition: color 0.3s ease;
         }
-
         .social-btn:hover {
             color: var(--primary);
         }
-
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
         }
-
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
             .nav-links {
                 display: none;
             }
-            
             .features {
                 grid-template-columns: 1fr;
             }
@@ -424,6 +385,7 @@
                 <a href="#features">Fonctionnalités</a>
                 <a href="#download">Télécharger</a>
                 <a href="#support">Support</a>
+                <a href="/page/doc.html">Documentation</a>
             </div>
         </div>
     </nav>
@@ -431,9 +393,28 @@
     <section class="hero">
         <h1 class="reveal">HiraProject</h1>
         <p class="reveal">La nouvelle génération de triche sur les jeux vidéos.</p>
+        <a href="#download" class="cta-btn reveal">Commencez Maintenant</a>
     </section>
 
     <div class="container">
+        <!-- Section dControl ajoutée -->
+        <div class="program-card reveal">
+            <h2><i class="fas fa-download"></i> dControl</h2>
+            <div class="version-info">
+                <span class="version-tag">Version: 2.1</span>
+                <span class="mc-version">Windows: 10, 11</span>
+            </div>
+            <p>dControl propose des fonctionnalités de contrôle avancé, une interface intuitive et une gestion simplifiée pour gérer votre Windows Defender.</p>
+            <div class="download-stats">
+                <i class="fas fa-chart-line"></i> 30M+ téléchargements
+            </div>
+            <a href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/24122024.rar" class="download-btn" target="_blank">
+                <i class="fas fa-download"></i>
+                Télécharger
+            </a>
+        </div>
+
+        <!-- Section Gorilla Loader -->
         <div class="program-card reveal">
             <h2><i class="fas fa-download"></i> Gorilla Loader</h2>
             <div class="version-info">
@@ -444,7 +425,7 @@
             <div class="download-stats">
                 <i class="fas fa-chart-line"></i> 1M+ téléchargements
             </div>
-            <a href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/gorilla-loader-1.0.0.exe" class="download-btn" target="_blank">
+            <a href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/gorilla-loader-1.0.0.rar" class="download-btn" target="_blank">
                 <i class="fas fa-download"></i>
                 Télécharger
             </a>
@@ -460,7 +441,7 @@
             <div class="download-stats">
                 <i class="fas fa-chart-line"></i> 750K+ téléchargements
             </div>
-            <a href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/fabric-installer-1.0.1.exe" class="download-btn" target="_blank">
+            <a href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/fabric-installer-1.0.1.rar" class="download-btn" target="_blank">
                 <i class="fas fa-download"></i>
                 Télécharger
             </a>
@@ -503,7 +484,7 @@
         </section>
     </div>
 
-    <footer>
+    <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>HiraProject</h3>
@@ -512,7 +493,7 @@
             <div class="footer-section">
                 <h3>Ressources</h3>
                 <ul>
-                    <li><a href="#docs">Documentation</a></li>
+                    <li><a href="/page/doc.html">Documentation</a></li>
                     <li><a href="#changelog">Notes de version</a></li>
                     <li><a href="#status">Statut des services</a></li>
                 </ul>
