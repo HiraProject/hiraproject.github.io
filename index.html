@@ -1,529 +1,565 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HiraProject - Game Enhancements</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #3B82F6;
-            --secondary: #60A5FA;
-            --background: #0f0f0f;
-            --surface: #1a1a1a;
-            --text: #f5f5f5;
-            --glass: rgba(26, 26, 26, 0.25);
-            --accent: #FF5722;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        body {
-            background-color: var(--background);
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-        .navbar {
-            background: var(--glass);
-            padding: 1.2rem 2rem;
-            backdrop-filter: blur(15px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--primary);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-        }
-        .navbar-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-        }
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        .hero {
-            padding: 12rem 2rem 6rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 30%);
-            opacity: 0.1;
-            z-index: -1;
-        }
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: float 3s ease-in-out infinite;
-        }
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 2rem;
-            color: var(--secondary);
-        }
-        .hero .cta-btn {
-            background: var(--accent);
-            color: #fff;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            transition: all 0.3s ease;
-            border: none;
-        }
-        .hero .cta-btn:hover {
-            background: var(--primary);
-        }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        .program-card {
-            background: var(--glass);
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin: 2rem 0;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .program-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            padding: 2px;
-            background: linear-gradient(45deg, var(--primary), transparent);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .program-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        }
-        .program-card:hover::before {
-            opacity: 1;
-        }
-        .program-card .version-info {
-            margin-top: 1rem;
-            display: flex;
-            justify-content: space-between;
-            color: var(--text);
-        }
-        .download-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: #fff;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border: none;
-        }
-        .download-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-        .download-btn:hover::before {
-            left: 100%;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 4rem 2rem;
-        }
-        .feature-card {
-            background: var(--surface);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-        .feature-card i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-        .feature-card p {
-            font-size: 1rem;
-            color: var(--text);
-        }
-        .testimonial-section {
-            padding: 4rem 2rem;
-            background: var(--glass);
-            border-radius: 20px;
-            margin: 4rem 0;
-            backdrop-filter: blur(10px);
-        }
-        .testimonial-section h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-            color: var(--primary);
-        }
-        .testimonial {
-            background: var(--surface);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: var(--text);
-        }
-        .testimonial p {
-            margin-bottom: 1rem;
-        }
-        .testimonial .author {
-            font-weight: 600;
-            color: var(--primary);
-        }
-        .cta-section {
-            padding: 4rem 2rem;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border-radius: 20px;
-            margin: 4rem 0;
-            text-align: center;
-            color: #fff;
-        }
-        .cta-section h2 {
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-        .cta-section p {
-            margin-bottom: 2rem;
-            font-size: 1.2rem;
-        }
-        .cta-btn {
-            background: #fff;
-            color: var(--primary);
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border: none;
-        }
-        .cta-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-        .cta-btn:hover::before {
-            left: 100%;
-        }
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .footer {
-            background: var(--surface);
-            padding: 4rem 2rem;
-            margin-top: 6rem;
-            position: relative;
-        }
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-        .footer-section h3 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-        .footer-section p {
-            color: var(--text);
-        }
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-        }
-        .footer-section ul li {
-            margin-bottom: 1rem;
-        }
-        .footer-section ul li a {
-            color: var(--text);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .footer-section ul li a:hover {
-            color: var(--primary);
-        }
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-        .social-btn {
-            color: var(--text);
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-        .social-btn:hover {
-            color: var(--primary);
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .nav-links {
-                display: none;
-            }
-            .features {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="description" content="HiraProject - La nouvelle génération de triche sur les jeux vidéos. Découvrez nos outils innovants pour optimiser votre expérience de jeu.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HiraProject - Game Enhancements</title>
+  <link rel="shortcut icon" href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/cube-solid.svg" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #3B82F6;
+      --secondary: #60A5FA;
+      --background: #0f0f0f;
+      --surface: #1a1a1a;
+      --text: #f5f5f5;
+      --glass: rgba(26, 26, 26, 0.25);
+      --accent: #FF5722;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    header, nav, main, footer {
+      width: 100%;
+    }
+    /* Navbar */
+    .navbar {
+      background: var(--glass);
+      padding: 1.2rem 2rem;
+      backdrop-filter: blur(15px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--primary);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+    }
+    .navbar-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    /* Hero Section */
+    .hero {
+      padding: 12rem 2rem 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 30%);
+      opacity: 0.1;
+      z-index: -1;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: float 3s ease-in-out infinite;
+    }
+    .hero p {
+      font-size: 1.4rem;
+      margin-bottom: 2rem;
+      color: var(--secondary);
+    }
+    .hero .cta-btn {
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    .hero .cta-btn:hover {
+      background: var(--primary);
+    }
+    /* Scroll Down */
+    .scroll-down {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--primary); /* Fleche en bleu */
+      font-size: 2.5rem;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+      transition: transform 0.3s ease;
+    }
+    .scroll-down:hover {
+      transform: translateX(-50%) scale(1.1);
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    /* Main Content */
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .program-card {
+      background: var(--glass);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin: 2rem 0;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(59, 130, 246, 0.15);
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .program-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(45deg, var(--primary), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .program-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+    .program-card:hover::before {
+      opacity: 1;
+    }
+    .program-card .version-info {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text);
+    }
+    .download-btn {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: none;
+    }
+    .download-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+    .download-btn:hover::before {
+      left: 100%;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 4rem 2rem;
+    }
+    .feature-card {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+    .feature-card i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+    .feature-card p {
+      font-size: 1rem;
+      color: var(--text);
+    }
+    .testimonial-section {
+      padding: 4rem 2rem;
+      background: var(--glass);
+      border-radius: 20px;
+      margin: 4rem 0;
+      backdrop-filter: blur(10px);
+    }
+    .testimonial-section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: var(--primary);
+    }
+    .testimonial {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: var(--text);
+    }
+    .testimonial p {
+      margin-bottom: 1rem;
+    }
+    .testimonial .author {
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .cta-section {
+      padding: 4rem 2rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      border-radius: 20px;
+      margin: 4rem 0;
+      text-align: center;
+      color: #fff;
+    }
+    .cta-section h2 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    .cta-section p {
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+    }
+    .cta-btn {
+      background: #fff;
+      color: var(--primary);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: none;
+    }
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+    .cta-btn:hover::before {
+      left: 100%;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .footer {
+      background: var(--surface);
+      padding: 4rem 2rem;
+      margin-top: 6rem;
+      position: relative;
+    }
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+    }
+    .footer-section h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+    .footer-section p {
+      color: var(--text);
+    }
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-section ul li {
+      margin-bottom: 1rem;
+    }
+    .footer-section ul li a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer-section ul li a:hover {
+      color: var(--primary);
+    }
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .social-btn {
+      color: var(--text);
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+    .social-btn:hover {
+      color: var(--primary);
+    }
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header>
     <nav class="navbar">
-        <div class="navbar-content">
-            <a href="#" class="logo">
-                <i class="fas fa-cube"></i>
-                HiraProject
-            </a>
-            <div class="nav-links">
-                <a href="/index.html">Accueil</a>
-                <a href="#features">Fonctionnalités</a>
-                <a href="#download">Télécharger</a>
-                <a href="#support">Support</a>
-                <a href="/page/doc.html">Documentation</a>
-            </div>
+      <div class="navbar-content">
+        <a href="/index.html" class="logo">
+          <i class="fas fa-cube"></i>
+          HiraProject
+        </a>
+        <div class="nav-links">
+          <a href="/index.html">Accueil</a>
+          <a href="#features">Fonctionnalités</a>
+          <a href="#download">Télécharger</a>
+          <a href="#support">Support</a>
+          <a href="/page/doc.html">Documentation</a>
         </div>
+      </div>
     </nav>
+  </header>
 
+  <main>
     <section class="hero">
-        <h1 class="reveal">HiraProject</h1>
-        <p class="reveal">La nouvelle génération de triche sur les jeux vidéos.</p>
-        <a href="#download" class="cta-btn reveal">Commencez Maintenant</a>
+      <h1 class="reveal">HiraProject</h1>
+      <p class="reveal">La nouvelle génération de triche sur les jeux vidéos.</p>
+      <a href="#download" class="cta-btn reveal">Commencez Maintenant</a>
+      <div class="scroll-down reveal">
+        <a href="#features"><i class="fas fa-chevron-down"></i></a>
+      </div>
     </section>
 
     <div class="container">
-        <!-- Section dControl ajoutée -->
-        <div class="program-card reveal">
-            <h2><i class="fas fa-download"></i> dControl</h2>
-            <div class="version-info">
-                <span class="version-tag">Version: 2.1</span>
-                <span class="mc-version">Windows: 10, 11</span>
-            </div>
-            <p>dControl propose des fonctionnalités de contrôle avancé, une interface intuitive et une gestion simplifiée pour gérer votre Windows Defender.</p>
-            <div class="download-stats">
-                <i class="fas fa-chart-line"></i> 30M+ téléchargements
-            </div>
-            <a href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/24122024.rar" class="download-btn" target="_blank">
-                <i class="fas fa-download"></i>
-                Télécharger
-            </a>
+      <!-- Section dControl -->
+      <div class="program-card reveal">
+        <h2><i class="fas fa-download"></i> dControl</h2>
+        <div class="version-info">
+          <span class="version-tag">Version: 2.1</span>
+          <span class="mc-version">Windows: 10, 11</span>
         </div>
-
-        <!-- Section Gorilla Loader -->
-        <div class="program-card reveal">
-            <h2><i class="fas fa-download"></i> Gorilla Loader</h2>
-            <div class="version-info">
-                <span class="version-tag">Version: Last</span>
-                <span class="mc-version">Warzone: Last</span>
-            </div>
-            <p>Gorilla Loader offre des fonctionnalités avancées telles que l'ESP, l'aimbot et le déverrouillage de tout sur Black Ops 6 et Warzone, garantissant une expérience de jeu inégalée.</p>
-            <div class="download-stats">
-                <i class="fas fa-chart-line"></i> 1M+ téléchargements
-            </div>
-            <a href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/gorilla-loader-1.0.0.rar" class="download-btn" target="_blank">
-                <i class="fas fa-download"></i>
-                Télécharger
-            </a>
+        <p>dControl propose des fonctionnalités de contrôle avancé, une interface intuitive et une gestion simplifiée pour gérer votre Windows Defender.</p>
+        <div class="download-stats">
+          <i class="fas fa-chart-line"></i> 30M+ téléchargements
         </div>
-        
-        <div class="program-card reveal">
-            <h2><i class="fas fa-download"></i> Fabric</h2>
-            <div class="version-info">
-                <span class="version-tag">Version: 0.16.10</span>
-                <span class="mc-version">Minecraft: 1.24.1</span>
-            </div>
-            <p>Plateforme complète de gestion de mods avec système intelligent de résolution de dépendances et mise à jour automatique.</p>
-            <div class="download-stats">
-                <i class="fas fa-chart-line"></i> 750K+ téléchargements
-            </div>
-            <a href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/fabric-installer-1.0.1.rar" class="download-btn" target="_blank">
-                <i class="fas fa-download"></i>
-                Télécharger
-            </a>
+        <a href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/24122024.rar" class="download-btn" target="_blank">
+          <i class="fas fa-download"></i>
+          Télécharger
+        </a>
+      </div>
+
+      <!-- Section Gorilla Loader -->
+      <div class="program-card reveal">
+        <h2><i class="fas fa-download"></i> Gorilla Loader</h2>
+        <div class="version-info">
+          <span class="version-tag">Version: Last</span>
+          <span class="mc-version">Warzone: Last</span>
         </div>
+        <p>Gorilla Loader offre des fonctionnalités avancées telles que l'ESP, l'aimbot et le déverrouillage de tout sur Black Ops 6 et Warzone, garantissant une expérience de jeu inégalée.</p>
+        <div class="download-stats">
+          <i class="fas fa-chart-line"></i> 1M+ téléchargements
+        </div>
+        <a href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/gorilla-loader-1.0.0.rar" class="download-btn" target="_blank">
+          <i class="fas fa-download"></i>
+          Télécharger
+        </a>
+      </div>
+      
+      <!-- Section Fabric -->
+      <div class="program-card reveal">
+        <h2><i class="fas fa-download"></i> Fabric</h2>
+        <div class="version-info">
+          <span class="version-tag">Version: 0.16.10</span>
+          <span class="mc-version">Minecraft: 1.24.1</span>
+        </div>
+        <p>Plateforme complète de gestion de mods avec système intelligent de résolution de dépendances et mise à jour automatique.</p>
+        <div class="download-stats">
+          <i class="fas fa-chart-line"></i> 750K+ téléchargements
+        </div>
+        <a href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/fabric-installer-1.0.1.rar" class="download-btn" target="_blank">
+          <i class="fas fa-download"></i>
+          Télécharger
+        </a>
+      </div>
 
-        <section class="features" id="features">
-            <div class="feature-card reveal">
-                <i class="fas fa-bolt"></i>
-                <h3>Performance</h3>
-                <p>Optimisation multicœur et gestion mémoire avancée</p>
-            </div>
-            <div class="feature-card reveal">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Sécurité</h3>
-                <p>Vérification cryptographique des packages</p>
-            </div>
-            <div class="feature-card reveal">
-                <i class="fas fa-puzzle-piece"></i>
-                <h3>Modularité</h3>
-                <p>Système de plugins extensible</p>
-            </div>
-        </section>
+      <section class="features" id="features">
+        <div class="feature-card reveal">
+          <i class="fas fa-bolt"></i>
+          <h3>Performance</h3>
+          <p>Optimisation multicœur et gestion mémoire avancée</p>
+        </div>
+        <div class="feature-card reveal">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Sécurité</h3>
+          <p>Vérification cryptographique des packages</p>
+        </div>
+        <div class="feature-card reveal">
+          <i class="fas fa-puzzle-piece"></i>
+          <h3>Modularité</h3>
+          <p>Système de plugins extensible</p>
+        </div>
+      </section>
 
-        <section class="testimonial-section">
-            <h2>Ce que disent nos utilisateurs</h2>
-            <div class="testimonial reveal">
-                <p>"Gorilla Loader a complètement changé ma façon de jouer. Les fonctionnalités sont incroyables et la performance est inégalée."</p>
-                <span class="author">- Alex, joueur professionnel</span>
-            </div>
-            <div class="testimonial reveal">
-                <p>"Le support client est exceptionnel. Ils m'ont aidé à chaque étape pour configurer les mods sur mon jeu préféré."</p>
-                <span class="author">- Marie, développeur de jeux</span>
-            </div>
-        </section>
+      <section class="testimonial-section">
+        <h2>Ce que disent nos utilisateurs</h2>
+        <div class="testimonial reveal">
+          <p>"Gorilla Loader a complètement changé ma façon de jouer. Les fonctionnalités sont incroyables et la performance est inégalée."</p>
+          <span class="author">- Alex, joueur professionnel</span>
+        </div>
+        <div class="testimonial reveal">
+          <p>"Le support client est exceptionnel. Ils m'ont aidé à chaque étape pour configurer les mods sur mon jeu préféré."</p>
+          <span class="author">- Marie, développeur de jeux</span>
+        </div>
+      </section>
 
-        <section class="cta-section">
-            <h2>Prêt à améliorer votre expérience de jeu ?</h2>
-            <p>Téléchargez nos outils dès maintenant et rejoignez des milliers de joueurs satisfaits.</p>
-            <a href="#download" class="cta-btn">Télécharger Maintenant</a>
-        </section>
+      <section class="cta-section">
+        <h2>Prêt à améliorer votre expérience de jeu ?</h2>
+        <p>Téléchargez nos outils dès maintenant et rejoignez des milliers de joueurs satisfaits.</p>
+        <a href="#download" class="cta-btn">Télécharger Maintenant</a>
+      </section>
     </div>
+  </main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>HiraProject</h3>
-                <p>© 2024 HiraProject<br>Tous droits réservés</p>
-            </div>
-            <div class="footer-section">
-                <h3>Ressources</h3>
-                <ul>
-                    <li><a href="/page/doc.html">Documentation</a></li>
-                    <li><a href="#changelog">Notes de version</a></li>
-                    <li><a href="#status">Statut des services</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Communauté</h3>
-                <div class="social-links">
-                    <a href="#discord" class="social-btn"><i class="fab fa-discord"></i></a>
-                    <a href="#github" class="social-btn"><i class="fab fa-github"></i></a>
-                    <a href="#youtube" class="social-btn"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>HiraProject</h3>
+        <p>© 2024 HiraProject<br>Tous droits réservés</p>
+      </div>
+      <div class="footer-section">
+        <h3>Ressources</h3>
+        <ul>
+          <li><a href="/page/doc.html">Documentation</a></li>
+          <li><a href="#changelog">Notes de version</a></li>
+          <li><a href="#status">Statut des services</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Communauté</h3>
+        <div class="social-links">
+          <a href="#discord" class="social-btn"><i class="fab fa-discord"></i></a>
+          <a href="#github" class="social-btn"><i class="fab fa-github"></i></a>
+          <a href="#youtube" class="social-btn"><i class="fab fa-youtube"></i></a>
         </div>
-    </footer>
+      </div>
+    </div>
+  </footer>
 
-    <script>
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            const reveals = document.querySelectorAll('.reveal');
-            reveals.forEach(element => {
-                const windowHeight = window.innerHeight;
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    element.classList.add('active');
-                }
-            });
+  <script>
+    window.addEventListener('scroll', reveal);
+    function reveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        if (elementTop < windowHeight - elementVisible) {
+          element.classList.add('active');
         }
-        reveal();
-    </script>
+      });
+    }
+    reveal();
+  </script>
 </body>
 </html>
