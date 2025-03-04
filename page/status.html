@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="Documentation HiraProject - Toutes les informations pour installer et utiliser HiraProject efficacement.">
+  <meta name="description" content="Statut des services HiraProject - Vérifiez l'état de nos services et leur indétectabilité.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Documentation - HiraProject</title>
+  <title>Statut des Services - HiraProject</title>
   <link rel="shortcut icon" href="https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/cube-solid.svg" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -17,7 +17,6 @@
       --text: #f5f5f5;
       --glass: rgba(26, 26, 26, 0.25);
       --accent: #FF5722;
-      --highlight: #2D2D2D;
     }
     * {
       margin: 0;
@@ -56,8 +55,27 @@
       pointer-events: none;
       backdrop-filter: blur(100px);
     }
-    /* Navbar améliorée */
-    header .navbar {
+    /* Amélioration du fond avec motif */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(45deg, rgba(59, 130, 246, 0.05) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(59, 130, 246, 0.05) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(59, 130, 246, 0.05) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(59, 130, 246, 0.05) 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      z-index: -2;
+      opacity: 0.5;
+      animation: shimmer 20s linear infinite;
+    }
+    /* Navbar */
+    .navbar {
       background: var(--glass);
       padding: 1.2rem 2rem;
       backdrop-filter: blur(15px);
@@ -67,11 +85,6 @@
       z-index: 1000;
       border-bottom: 1px solid var(--primary);
       box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-    }
-    .navbar.scrolled {
-      background: rgba(15, 15, 15, 0.95);
-      padding: 1rem 2rem;
     }
     .navbar-content {
       max-width: 1400px;
@@ -90,9 +103,13 @@
       align-items: center;
       gap: 0.5rem;
       transition: transform 0.3s ease;
+      text-decoration: none;
     }
     .logo:hover {
       transform: scale(1.05);
+    }
+    .mobile-menu-btn {
+      display: none;
     }
     .nav-links {
       display: flex;
@@ -119,7 +136,7 @@
     .nav-links a:hover::after {
       width: 100%;
     }
-    /* Hero Section améliorée */
+    /* Hero Section */
     .hero {
       padding: 8rem 2rem 4rem;
       text-align: center;
@@ -148,13 +165,14 @@
       animation: gradientFlow 15s ease infinite;
     }
     .hero h1 {
-      font-size: 3.5rem;
+      font-size: 5rem;
       margin-bottom: 1.5rem;
       background: linear-gradient(45deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: neonGlow 3s ease-in-out infinite;
       position: relative;
+      text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary);
     }
     .hero h1::after {
       content: '';
@@ -174,82 +192,26 @@
       margin: 0 auto;
       line-height: 1.8;
     }
-    /* Container et sections de doc améliorés */
-    .container {
+    /* Status Cards */
+    .status-container {
       max-width: 1400px;
       margin: 2rem auto;
       padding: 2rem;
       display: grid;
-      grid-template-columns: 250px 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 2rem;
     }
-    .docs-nav {
-      position: sticky;
-      top: 100px;
-      height: fit-content;
+    .status-card {
       background: var(--glass);
       padding: 2rem;
       border-radius: 15px;
       backdrop-filter: blur(10px);
       border: 1px solid rgba(59, 130, 246, 0.2);
-    }
-    .docs-nav ul {
-      list-style: none;
-      padding: 0;
-    }
-    .docs-nav li {
-      margin-bottom: 1rem;
-    }
-    .docs-nav a {
-      color: var(--text);
-      text-decoration: none;
       transition: all 0.3s ease;
-      display: block;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      position: relative;
-    }
-    .docs-nav a:hover {
-      background: rgba(59, 130, 246, 0.1);
-      color: var(--primary);
-    }
-    .docs-nav a.active {
-      background: rgba(59, 130, 246, 0.2);
-      color: var(--primary);
-    }
-    .docs-nav a.active::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 3px;
-      height: 20px;
-      background: var(--primary);
-      border-radius: 0 3px 3px 0;
-    }
-    .docs-content {
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
-    }
-    .docs-section {
-      background: var(--glass);
-      padding: 2.5rem;
-      border-radius: 15px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(59, 130, 246, 0.2);
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
       position: relative;
       overflow: hidden;
     }
-    .docs-section.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .docs-section::before {
+    .status-card::before {
       content: '';
       position: absolute;
       top: 0;
@@ -260,28 +222,25 @@
       transform: translateX(-100%);
       transition: transform 0.6s ease;
     }
-    .docs-section:hover::before {
+    .status-card:hover::before {
       transform: translateX(100%);
     }
-    .docs-section h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      color: var(--primary);
+    .status-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+    .status-header {
       display: flex;
       align-items: center;
       gap: 1rem;
+      margin-bottom: 1.5rem;
       position: relative;
     }
-    .docs-section h2 i {
-      font-size: 1.8rem;
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .docs-section h2::after {
+    .status-header::after {
       content: '';
       position: absolute;
-      bottom: -5px;
+      bottom: -10px;
       left: 0;
       width: 100%;
       height: 2px;
@@ -290,72 +249,103 @@
       transform-origin: right;
       transition: transform 0.3s ease;
     }
-    .docs-section:hover h2::after {
+    .status-header:hover::after {
       transform: scaleX(1);
       transform-origin: left;
     }
-    .docs-section p, .docs-section li {
-      font-size: 1.1rem;
-      margin-bottom: 1.2rem;
-      color: var(--text);
-      line-height: 1.8;
+    .status-header i {
+      font-size: 2rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: neonGlow 3s ease-in-out infinite;
     }
-    .docs-section ol, .docs-section ul {
-      margin-left: 1.5rem;
-    }
-    .docs-section a {
+    .status-header h2 {
+      font-size: 1.8rem;
       color: var(--primary);
-      text-decoration: none;
-      transition: all 0.3s ease;
       position: relative;
     }
-    .docs-section a:hover {
-      color: var(--secondary);
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
     }
-    .docs-section a::after {
+    .status-badge::before {
       content: '';
       position: absolute;
-      bottom: -2px;
+      top: 0;
       left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--primary);
-      transition: width 0.3s ease;
-    }
-    .docs-section a:hover::after {
       width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
     }
-    /* Code snippet amélioré */
-    .code-snippet {
-      background: var(--highlight);
-      padding: 1.5rem;
-      border-radius: 15px;
-      margin: 1.5rem 0;
-      overflow-x: auto;
-      font-family: 'Fira Code', monospace;
-      font-size: 0.95rem;
-      color: #dcdcdc;
-      border: 1px solid rgba(59, 130, 246, 0.2);
+    .status-badge:hover::before {
+      transform: translateX(100%);
+    }
+    .status-badge.undetected {
+      background: rgba(34, 197, 94, 0.2);
+      color: #22c55e;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
+    }
+    .status-badge.undetected:hover {
+      box-shadow: 0 0 25px rgba(34, 197, 94, 0.3);
+    }
+    .status-badge.detected {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+    }
+    .status-badge.detected:hover {
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.3);
+    }
+    .status-details {
+      margin-top: 1.5rem;
+    }
+    .status-details p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
       position: relative;
     }
-    .code-snippet::before {
-      content: 'Code';
-      position: absolute;
-      top: -12px;
-      left: 20px;
-      background: var(--highlight);
-      padding: 0 10px;
-      font-size: 0.8rem;
-      color: var(--secondary);
-      border-radius: 4px;
+    .status-details ul {
+      list-style: none;
+      margin-top: 1rem;
     }
-    .code-snippet pre {
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      margin: 0;
+    .status-details li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      padding: 0.8rem;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 8px;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      transition: all 0.3s ease;
     }
-    /* Footer amélioré */
-    footer {
+    .status-details li:hover {
+      background: rgba(59, 130, 246, 0.15);
+      transform: translateX(5px);
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
+    }
+    .status-details li i {
+      color: var(--primary);
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+    .status-details li:hover i {
+      transform: scale(1.2) rotate(360deg);
+    }
+    /* Footer */
+    .footer {
       background: linear-gradient(180deg, var(--surface), var(--background));
       padding: 6rem 2rem;
       margin-top: 6rem;
@@ -407,6 +397,11 @@
     .footer-section:hover h3::before {
       opacity: 1;
       left: -30px;
+    }
+    .footer-section p {
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
     }
     .footer-section ul {
       list-style: none;
@@ -500,54 +495,6 @@
     .social-btn:hover::before {
       opacity: 0.2;
     }
-    /* Bouton "Retour en haut" amélioré */
-    .back-to-top {
-      position: fixed;
-      bottom: 40px;
-      right: 40px;
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: var(--text);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      opacity: 0;
-      transform: translateY(20px);
-      z-index: 1100;
-    }
-    .back-to-top.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .back-to-top:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
-    }
-    /* Animations */
-    @keyframes gradientFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    @keyframes neonGlow {
-      0%, 100% { text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary); }
-      50% { text-shadow: 0 0 10px var(--primary), 0 0 15px var(--primary); }
-    }
-    /* Media Queries */
-    @media (max-width: 1024px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
-      .docs-nav {
-        position: static;
-        margin-bottom: 2rem;
-      }
-    }
     @media (max-width: 768px) {
       .hero h1 {
         font-size: 2.5rem;
@@ -561,8 +508,9 @@
       .mobile-menu-btn {
         display: block;
       }
-      .docs-section {
-        padding: 1.5rem;
+      .status-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
       }
     }
     @media (max-width: 480px) {
@@ -572,29 +520,12 @@
       .hero p {
         font-size: 1rem;
       }
-      .docs-section h2 {
+      .status-card {
+        padding: 1.5rem;
+      }
+      .status-header h2 {
         font-size: 1.5rem;
       }
-      .docs-section p, .docs-section li {
-        font-size: 1rem;
-      }
-    }
-    /* Amélioration des animations */
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .docs-nav a i {
-      animation: float 3s ease-in-out infinite;
-      animation-delay: calc(var(--i) * 0.2s);
-    }
-    /* Effet de survol amélioré pour les sections */
-    .docs-section {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .docs-section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
     }
   </style>
 </head>
@@ -607,12 +538,13 @@
           HiraProject
         </a>
         <div class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
         </div>
         <div class="nav-links">
           <a href="/index.html">Accueil</a>
           <a href="#features">Fonctionnalités</a>
-          <a href="/index.html">Télécharger</a>
-          <a href="support.html">Support</a>
+          <a href="#download">Télécharger</a>
+          <a href="#support">Support</a>
           <a href="/page/doc.html">Documentation</a>
         </div>
       </div>
@@ -621,63 +553,86 @@
 
   <main>
     <section class="hero">
-      <h1 class="reveal">Documentation HiraProject</h1>
-      <p class="reveal">Toutes les informations pour installer et utiliser HiraProject efficacement.</p>
+      <h1 class="reveal">Statut des Services</h1>
+      <p class="reveal">Vérifiez l'état de nos services et leur indétectabilité en temps réel.</p>
     </section>
 
-    <div class="container">
-      <nav class="docs-nav">
-        <ul>
-          <li><a href="#introduction" class="active"><i class="fas fa-book"></i> Introduction</a></li>
-          <li><a href="#installation"><i class="fas fa-download"></i> Installation</a></li>
-          <li><a href="#utilisation"><i class="fas fa-cogs"></i> Utilisation Avancée</a></li>
-          <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-        </ul>
-      </nav>
-
-      <div class="docs-content">
-        <div id="introduction" class="docs-section reveal">
-          <h2><i class="fas fa-book"></i> Introduction</h2>
-          <p>HiraProject est une suite d'outils avancés destinée à améliorer votre expérience de jeu. Cette documentation vous guide pas à pas pour exploiter toutes les fonctionnalités, que vous soyez novice ou utilisateur expérimenté.</p>
-          <p><strong>Important :</strong> Avant de lancer un logiciel, assurez-vous d'utiliser <em>dControl</em> pour désactiver temporairement votre antivirus, afin d'éviter tout conflit.</p>
+    <div class="status-container">
+      <div class="status-card">
+        <div class="status-header">
+          <i class="fas fa-shield-alt"></i>
+          <h2>Gorilla Loader</h2>
         </div>
-
-        <div id="installation" class="docs-section reveal">
-          <h2><i class="fas fa-download"></i> Installation</h2>
-          <p>Suivez ces étapes pour installer HiraProject :</p>
-          <ol>
-            <li><strong>Téléchargement :</strong> Rendez-vous sur la page <a href="/index.html">Télécharger</a> pour récupérer les fichiers nécessaires.</li>
-            <li><strong>Extraction :</strong> Décompressez les fichiers téléchargés dans un dossier dédié.</li>
-            <li><strong>Dépendances :</strong> Installez les runtimes requis (par exemple, les versions x64 et x86 du C++ redistributable depuis le site de Microsoft).</li>
-          </ol>
+        <div class="status-badge undetected">
+          <i class="fas fa-check-circle"></i>
+          Indétectable
         </div>
-
-        <div id="utilisation" class="docs-section reveal">
-          <h2><i class="fas fa-cogs"></i> Utilisation Avancée</h2>
-          <p>Pour exploiter pleinement les capacités de HiraProject, voici quelques astuces :</p>
+        <div class="status-details">
+          <p>Gorilla Loader est actuellement indétectable par :</p>
           <ul>
-            <li><strong>Personnalisation :</strong> Utilisez l'interface de configuration pour activer ou désactiver certaines fonctionnalités.</li>
-            <li><strong>Mises à jour automatiques :</strong> Activez cette option pour recevoir les dernières améliorations sans intervention manuelle.</li>
-            <li><strong>Support communautaire :</strong> Consultez notre forum et rejoignez le Discord pour partager vos retours et découvrir des astuces inédites.</li>
+            <li><i class="fas fa-shield-alt"></i> Ricochet Anti-Cheat</li>
+          </ul>
+          <p>Notre technologie de pointe garantit une indétectabilité maximale grâce à :</p>
+          <ul>
+            <li><i class="fas fa-code"></i> Injection mémoire avancée</li>
+            <li><i class="fas fa-lock"></i> Chiffrement dynamique</li>
+            <li><i class="fas fa-random"></i> Signatures variables</li>
+            <li><i class="fas fa-clock"></i> Mises à jour quotidiennes</li>
           </ul>
         </div>
+      </div>
 
-        <div id="faq" class="docs-section reveal">
-          <h2><i class="fas fa-question-circle"></i> FAQ</h2>
-          <div class="faq-item">
-            <p><strong>Q :</strong> Mon antivirus bloque HiraProject, que faire ?</p>
-            <p><strong>R :</strong> Il est recommandé d'utiliser <em>dControl</em> pour désactiver temporairement votre antivirus avant de lancer le logiciel, afin d'éviter les faux positifs.</p>
-          </div>
-          <div class="faq-item">
-            <p><strong>Q :</strong> Où trouver de l'aide en cas de problème ?</p>
-            <p><strong>R :</strong> Consultez la section Support ou rejoignez notre communauté sur Discord pour obtenir de l'aide en direct.</p>
-          </div>
+      <div class="status-card">
+        <div class="status-header">
+          <i class="fas fa-download"></i>
+          <h2>dControl</h2>
+        </div>
+        <div class="status-badge undetected">
+          <i class="fas fa-check-circle"></i>
+          Fonctionnel
+        </div>
+        <div class="status-details">
+          <p>dControl fonctionne parfaitement sur toutes les versions de Windows :</p>
+          <ul>
+            <li><i class="fab fa-windows"></i> Windows 10</li>
+            <li><i class="fab fa-windows"></i> Windows 11</li>
+          </ul>
+          <p>Fonctionnalités actives :</p>
+          <ul>
+            <li><i class="fas fa-toggle-on"></i> Désactivation temporaire de Windows Defender</li>
+            <li><i class="fas fa-shield-alt"></i> Protection contre les mises à jour automatiques</li>
+            <li><i class="fas fa-history"></i> Historique des modifications</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="status-card">
+        <div class="status-header">
+          <i class="fas fa-cube"></i>
+          <h2>Fabric</h2>
+        </div>
+        <div class="status-badge undetected">
+          <i class="fas fa-check-circle"></i>
+          Stable
+        </div>
+        <div class="status-details">
+          <p>Fabric est actuellement stable et compatible avec :</p>
+          <ul>
+            <li><i class="fas fa-gamepad"></i> Minecraft 1.24.1</li>
+            <li><i class="fas fa-puzzle-piece"></i> Tous les mods Fabric</li>
+          </ul>
+          <p>Statut des fonctionnalités :</p>
+          <ul>
+            <li><i class="fas fa-check"></i> Système de mods fonctionnel</li>
+            <li><i class="fas fa-check"></i> Mises à jour automatiques</li>
+            <li><i class="fas fa-check"></i> Support multi-plateforme</li>
+          </ul>
         </div>
       </div>
     </div>
   </main>
 
-  <footer>
+  <footer class="footer">
     <div class="footer-content">
       <div class="footer-section">
         <h3>HiraProject</h3>
@@ -688,23 +643,19 @@
         <ul>
           <li><a href="/page/doc.html" class="footer-link"><i class="fas fa-book"></i> Documentation</a></li>
           <li><a href="changelog.html" class="footer-link"><i class="fas fa-history"></i> Notes de version</a></li>
-          <li><a href="/page/status.html" class="footer-link"><i class="fas fa-server"></i> Statut des services</a></li>
+          <li><a href="status.html" class="footer-link"><i class="fas fa-server"></i> Statut des services</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h3>Communauté</h3>
         <div class="social-links">
-          <a href="https://discord.com" class="social-btn"><i class="fab fa-discord"></i></a>
-          <a href="https://github.com" class="social-btn"><i class="fab fa-github"></i></a>
-          <a href="https://youtube.com" class="social-btn"><i class="fab fa-youtube"></i></a>
+          <a href="#discord" class="social-btn"><i class="fab fa-discord"></i></a>
+          <a href="#github" class="social-btn"><i class="fab fa-github"></i></a>
+          <a href="#youtube" class="social-btn"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
     </div>
   </footer>
-
-  <div class="back-to-top">
-    <i class="fas fa-chevron-up"></i>
-  </div>
 
   <script>
     // Suivi du curseur pour le fond animé
@@ -728,23 +679,9 @@
 
     updateMousePosition();
 
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-      const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-
     // Apparition des sections
     document.addEventListener("DOMContentLoaded", function(){
       document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('active'));
-      const introSection = document.querySelector('.docs-section.introduction');
-      if (introSection) {
-        introSection.classList.add('active');
-      }
     });
     
     // Animation reveal sur scroll
@@ -760,71 +697,27 @@
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-    // Navigation active state
-    const sections = document.querySelectorAll('.docs-section');
-    const docNavLinks = document.querySelectorAll('.docs-nav a');
-
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.scrollY >= sectionTop - 150) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      docNavLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
-          link.classList.add('active');
-        }
-      });
-    });
-
-    // Bouton retour en haut
-    const backToTop = document.querySelector('.back-to-top');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    });
-
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-
     // Menu mobile
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const mainNavLinks = document.querySelector('.nav-links');
+    const navLinks = document.querySelector('.nav-links');
 
     mobileMenuBtn.addEventListener('click', () => {
-      mainNavLinks.classList.toggle('active');
+      navLinks.classList.toggle('active');
     });
 
     // Fermer le menu mobile lors du clic sur un lien
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
-        mainNavLinks.classList.remove('active');
+        navLinks.classList.remove('active');
       });
     });
 
     // Fermer le menu mobile lors du clic en dehors
     document.addEventListener('click', (e) => {
-      if (!mainNavLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-        mainNavLinks.classList.remove('active');
+      if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        navLinks.classList.remove('active');
       }
-    });
-
-    // Ajout des délais d'animation pour les icônes
-    document.querySelectorAll('.docs-nav a i').forEach((icon, index) => {
-      icon.style.setProperty('--i', index);
     });
   </script>
 </body>
-</html>
+</html> 
