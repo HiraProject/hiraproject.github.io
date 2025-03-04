@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="description" content="Documentation HiraProject - Toutes les informations pour installer et utiliser HiraProject efficacement.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Documentation - HiraProject</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,23 +18,24 @@
       --accent: #FF5722;
       --highlight: #2D2D2D;
     }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }
-
     body {
       background-color: var(--background);
       color: var(--text);
       line-height: 1.7;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
-
+    header, main, footer {
+      width: 100%;
+    }
     /* Navbar */
-    .navbar {
+    header .navbar {
       background: var(--glass);
       padding: 1.2rem 2rem;
       backdrop-filter: blur(15px);
@@ -44,7 +46,6 @@
       border-bottom: 1px solid var(--primary);
       box-shadow: 0 4px 30px rgba(0,0,0,0.1);
     }
-
     .navbar-content {
       max-width: 1400px;
       margin: 0 auto;
@@ -52,7 +53,6 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .logo {
       font-size: 1.8rem;
       font-weight: 700;
@@ -63,12 +63,10 @@
       align-items: center;
       gap: 0.5rem;
     }
-
     .nav-links {
       display: flex;
       gap: 2.5rem;
     }
-
     .nav-links a {
       color: var(--text);
       text-decoration: none;
@@ -77,7 +75,6 @@
       position: relative;
       padding: 0.5rem 0;
     }
-
     .nav-links a::after {
       content: '';
       position: absolute;
@@ -88,19 +85,17 @@
       background: var(--primary);
       transition: width 0.3s ease;
     }
-
     .nav-links a:hover::after {
       width: 100%;
     }
-
     /* Hero Section */
     .hero {
       padding: 8rem 2rem 4rem;
       text-align: center;
       position: relative;
       overflow: hidden;
+      margin-top: 70px; /* Pour compenser la navbar fixe */
     }
-
     .hero::before {
       content: '';
       position: absolute;
@@ -112,40 +107,29 @@
       opacity: 0.1;
       z-index: -1;
     }
-
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
       background: linear-gradient(45deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      /* L'animation float est optionnelle ici, puisque l'apparition se fait dès le chargement */
       animation: float 3s ease-in-out infinite;
     }
-
     .hero p {
       font-size: 1.2rem;
       color: var(--secondary);
     }
-
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
-
     /* Container et sections de doc */
     .container {
       max-width: 1400px;
       margin: 2rem auto;
       padding: 2rem;
     }
-
-    .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      color: var(--primary);
-      text-align: center;
-    }
-
     .docs-section {
       margin-bottom: 3rem;
       padding: 2rem;
@@ -156,12 +140,11 @@
       transform: translateY(30px);
       transition: all 0.8s ease;
     }
-
-    .docs-section.active {
+    /* Pour la section Introduction, on l'affiche immédiatement */
+    .docs-section.introduction.active {
       opacity: 1;
       transform: translateY(0);
     }
-
     .docs-section h2 {
       font-size: 1.8rem;
       margin-bottom: 1rem;
@@ -169,17 +152,14 @@
       border-bottom: 1px solid var(--primary);
       padding-bottom: 0.5rem;
     }
-
     .docs-section p, .docs-section li {
       font-size: 1rem;
       margin-bottom: 1rem;
       color: var(--text);
     }
-
     .docs-section ol, .docs-section ul {
       margin-left: 1.5rem;
     }
-
     /* Code snippet */
     .code-snippet {
       background: var(--highlight);
@@ -191,12 +171,10 @@
       font-size: 0.9rem;
       color: #dcdcdc;
     }
-
     .code-snippet pre {
       white-space: pre-wrap;
       word-wrap: break-word;
     }
-
     /* Footer */
     footer {
       background: var(--surface);
@@ -204,7 +182,6 @@
       margin-top: 6rem;
       position: relative;
     }
-
     .footer-content {
       max-width: 1400px;
       margin: 0 auto;
@@ -212,112 +189,141 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 3rem;
     }
-
     .footer-section h3 {
       color: var(--primary);
       margin-bottom: 1.5rem;
     }
-
     .footer-section p {
       color: var(--text);
     }
-
     .footer-section ul {
       list-style: none;
       padding: 0;
     }
-
     .footer-section ul li {
       margin-bottom: 1rem;
     }
-
     .footer-section ul li a {
       color: var(--text);
       text-decoration: none;
       transition: color 0.3s ease;
     }
-
     .footer-section ul li a:hover {
       color: var(--primary);
     }
-
     .social-links {
       display: flex;
       gap: 1rem;
     }
-
     .social-btn {
       color: var(--text);
       font-size: 1.5rem;
       transition: color 0.3s ease;
     }
-
     .social-btn:hover {
       color: var(--primary);
+    }
+    /* Bouton "Retour en haut" amélioré */
+    .back-to-top {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: var(--text);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0.8;
+      z-index: 1100;
+    }
+    .back-to-top:hover {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    /* Animation reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="navbar-content">
-      <a href="/index.html" class="logo">
-        <i class="fas fa-cube"></i>
-        HiraProject
-      </a>
-      <div class="nav-links">
-        <a href="/index.html">Accueil</a>
-        <a href="#features">Fonctionnalités</a>
-        <a href="/index.html">Télécharger</a>
-        <a href="support.html">Support</a>
-        <a href="/page/doc.html">Documentation</a>
+  <header>
+    <nav class="navbar">
+      <div class="navbar-content">
+        <a href="/index.html" class="logo">
+          <i class="fas fa-cube"></i>
+          HiraProject
+        </a>
+        <div class="nav-links">
+          <a href="/index.html">Accueil</a>
+          <a href="#features">Fonctionnalités</a>
+          <a href="/index.html">Télécharger</a>
+          <a href="support.html">Support</a>
+          <a href="/page/doc.html">Documentation</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <!-- Les éléments du hero apparaissent immédiatement -->
+      <h1 class="reveal">Documentation HiraProject</h1>
+      <p class="reveal">Toutes les informations pour installer et utiliser HiraProject efficacement.</p>
+    </section>
+
+    <div class="container">
+      <!-- Section Introduction qui s'affiche sans scroll -->
+      <div class="docs-section introduction reveal">
+        <h2>Introduction</h2>
+        <p>HiraProject est une suite d'outils avancés destinée à améliorer votre expérience de jeu. Cette documentation vous guide pas à pas pour exploiter toutes les fonctionnalités, que vous soyez novice ou utilisateur expérimenté.</p>
+        <p><strong>Important :</strong> Avant de lancer un logiciel, assurez-vous d'utiliser <em>dControl</em> pour désactiver temporairement votre antivirus, afin d'éviter tout conflit.</p>
+      </div>
+
+      <!-- Section Installation -->
+      <div class="docs-section reveal">
+        <h2>Installation</h2>
+        <p>Suivez ces étapes pour installer HiraProject :</p>
+        <ol>
+          <li><strong>Téléchargement :</strong> Rendez-vous sur la page <a href="/index.html" style="color: var(--secondary);">Télécharger</a> pour récupérer les fichiers nécessaires.</li>
+          <li><strong>Extraction :</strong> Décompressez les fichiers téléchargés dans un dossier dédié.</li>
+          <li><strong>Dépendances :</strong> Installez les runtimes requis (par exemple, les versions x64 et x86 du C++ redistributable depuis le site de Microsoft).</li>
+        </ol>
+      </div>
+
+      <!-- Section Utilisation Avancée -->
+      <div class="docs-section reveal">
+        <h2>Utilisation Avancée</h2>
+        <p>Pour exploiter pleinement les capacités de HiraProject, voici quelques astuces :</p>
+        <ul>
+          <li><strong>Personnalisation :</strong> Utilisez l'interface de configuration pour activer ou désactiver certaines fonctionnalités.</li>
+          <li><strong>Mises à jour automatiques :</strong> Activez cette option pour recevoir les dernières améliorations sans intervention manuelle.</li>
+          <li><strong>Support communautaire :</strong> Consultez notre forum et rejoignez le Discord pour partager vos retours et découvrir des astuces inédites.</li>
+        </ul>
+      </div>
+
+      <!-- Section FAQ -->
+      <div class="docs-section reveal">
+        <h2>FAQ</h2>
+        <p><strong>Q :</strong> Mon antivirus bloque HiraProject, que faire ?</p>
+        <p><strong>R :</strong> Il est recommandé d'utiliser <em>dControl</em> pour désactiver temporairement votre antivirus avant de lancer le logiciel, afin d'éviter les faux positifs.</p>
+        <p><strong>Q :</strong> Où trouver de l'aide en cas de problème ?</p>
+        <p><strong>R :</strong> Consultez la section Support ou rejoignez notre communauté sur Discord pour obtenir de l'aide en direct.</p>
       </div>
     </div>
-  </nav>
-
-  <section class="hero">
-    <h1>Documentation HiraProject</h1>
-    <p>Toutes les informations pour installer et utiliser HiraProject efficacement.</p>
-  </section>
-
-  <div class="container">
-    <!-- Introduction -->
-    <div class="docs-section reveal">
-      <h2>Introduction</h2>
-      <p>HiraProject est une suite d'outils avancés destinée à améliorer votre expérience de jeu. Cette documentation vous guide pas à pas pour exploiter toutes les fonctionnalités, que vous soyez novice ou utilisateur expérimenté.</p>
-      <p><strong>Important :</strong> Avant de lancer un logiciel, assurez-vous d'utiliser <em>dControl</em> pour désactiver temporairement votre antivirus, afin d'éviter tout conflit.</p>
-    </div>
-
-    <!-- Installation -->
-    <div class="docs-section reveal">
-      <h2>Installation</h2>
-      <p>Suivez ces étapes pour installer HiraProject :</p>
-      <ol>
-        <li><strong>Téléchargement :</strong> Rendez-vous sur la page <a href="/index.html" style="color: var(--secondary);">Télécharger</a> pour récupérer les fichiers nécessaires.</li>
-        <li><strong>Extraction :</strong> Décompressez les fichiers téléchargés dans un dossier dédié.</li>
-        <li><strong>Dépendances :</strong> Installez les runtimes requis (par exemple, les versions x64 et x86 du C++ redistributable depuis le site de Microsoft).</li>
-      </ol>
-    </div>
-
-    <!-- Utilisation Avancée -->
-    <div class="docs-section reveal">
-      <h2>Utilisation Avancée</h2>
-      <p>Pour exploiter pleinement les capacités de HiraProject, voici quelques astuces :</p>
-      <ul>
-        <li><strong>Personnalisation :</strong> Utilisez l'interface de configuration pour activer ou désactiver certaines fonctionnalités.</li>
-        <li><strong>Mises à jour automatiques :</strong> Activez cette option pour recevoir les dernières améliorations sans intervention manuelle.</li>
-        <li><strong>Support communautaire :</strong> Consultez notre forum et rejoignez le Discord pour partager vos retours et découvrir des astuces inédites.</li>
-      </ul>
-    </div>
-
-    <!-- FAQ -->
-    <div class="docs-section reveal">
-      <h2>FAQ</h2>
-      <p><strong>Q :</strong> Mon antivirus bloque HiraProject, que faire ?</p>
-      <p><strong>R :</strong> Il est recommandé d'utiliser <em>dControl</em> pour désactiver temporairement votre antivirus avant de lancer le logiciel, afin d'éviter les faux positifs.</p>
-      <p><strong>Q :</strong> Où trouver de l'aide en cas de problème ?</p>
-      <p><strong>R :</strong> Consultez la section Support ou rejoignez notre communauté sur Discord pour obtenir de l'aide en direct.</p>
-    </div>
-  </div>
+  </main>
 
   <footer>
     <div class="footer-content">
@@ -330,7 +336,7 @@
         <ul>
           <li><a href="/page/doc.html">Documentation</a></li>
           <li><a href="changelog.html">Notes de version</a></li>
-          <li><a href="status.html">Statut des services</a></li>
+          <li><a href="#status">Statut des services</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -344,11 +350,24 @@
     </div>
   </footer>
 
+  <!-- Bouton "Retour en haut" amélioré -->
+  <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+
   <script>
-    window.addEventListener('scroll', reveal);
-    function reveal() {
-      const reveals = document.querySelectorAll('.reveal');
-      reveals.forEach(element => {
+    // Apparition immédiate des éléments du hero et de la section Introduction
+    document.addEventListener("DOMContentLoaded", function(){
+      document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('active'));
+      const introSection = document.querySelector('.docs-section.introduction');
+      if (introSection) {
+        introSection.classList.add('active');
+      }
+    });
+    
+    // Animation reveal sur scroll pour les autres sections
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.reveal').forEach(element => {
         const windowHeight = window.innerHeight;
         const elementTop = element.getBoundingClientRect().top;
         const elementVisible = 150;
@@ -356,8 +375,13 @@
           element.classList.add('active');
         }
       });
-    }
-    reveal();
+    });
+    
+    // Affichage du bouton "Retour en haut"
+    window.addEventListener('scroll', () => {
+      const btn = document.querySelector('.back-to-top');
+      btn.style.display = (window.scrollY > 300) ? 'flex' : 'none';
+    });
   </script>
 </body>
 </html>
